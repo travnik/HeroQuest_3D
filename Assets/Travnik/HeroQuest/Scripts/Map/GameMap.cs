@@ -9,13 +9,14 @@ namespace Assets.Travnik.HeroQuest.Scripts.Map
 {
     public class GameMap
     {
+        public static MapNodeGameObject[,] map;
+
         public const int MapWidth = 10;
         public const int MapHeight = 10;
-        public static MapNode[,] map;
 
         public void Initialize()
         {
-            map = new MapNode[MapWidth, MapHeight];
+            map = new MapNodeGameObject[MapWidth, MapHeight];
 
             AddNode(0, 0, NodeType.Wall);
             AddNode(0, 1, NodeType.Wall);
@@ -56,7 +57,7 @@ namespace Assets.Travnik.HeroQuest.Scripts.Map
         public MapNode AddNode(int x, int y, NodeType type)
         {
             Vector2Int gridPoint = Geometry.GridPoint(x, y);
-            var node = new MapNode()
+            var node = new MapNodeGameObject()
             {
                 X = x,
                 Y = y,

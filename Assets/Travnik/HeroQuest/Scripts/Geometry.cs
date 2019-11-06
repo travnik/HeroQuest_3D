@@ -8,6 +8,7 @@ using UnityEngine;
 public class Geometry
 {
     public const float Scale = 2f;
+    public const float Bias = 0.8f;
 
     static public Vector3 PointFromGrid(Vector2Int gridPoint)
     {
@@ -23,8 +24,13 @@ public class Geometry
 
     static public Vector2Int GridFromPoint(Vector3 point)
     {
-        int col = Mathf.FloorToInt(4.0f + point.x);
-        int row = Mathf.FloorToInt(4.0f + point.z);
+        int col = CalcCoord(point.x);
+        int row = CalcCoord(point.z);
         return new Vector2Int(col, row);
+    }
+
+    private static int CalcCoord(float coord)
+    {
+        return Mathf.FloorToInt((Bias + coord) / Scale);
     }
 }

@@ -7,13 +7,26 @@ public class GameBoard : MonoBehaviour
     public Material defaultMaterial;
     public Material selectedMaterial;
 
-    public Transform FloorPrefab;
-    public Transform WallPrefab;
+    public GameObject FloorPrefab;
+    public GameObject WallPrefab;
+
+    public GameMap GameMap;
+
+    public void Initialize()
+    {
+        GameMap = new GameMap();
+        GameMap.Initialize();
+        InitializeMapGameObject();
+    }
 
     public GameObject AddPiece(GameObject piece, int col, int row)
     {
         Vector2Int gridPoint = Geometry.GridPoint(col, row);
+        Debug.Log("grid point " + gridPoint);
         GameObject newPiece = Instantiate(piece, Geometry.PointFromGrid(gridPoint), Quaternion.identity, gameObject.transform);
+        newPiece.transform.localPosition = Geometry.PointFromGrid(gridPoint);
+        Debug.Log("Geometry.PointFromGrid(gridPoint) " + Geometry.PointFromGrid(gridPoint));
+        Debug.Log("gameObject.transform " + gameObject.transform);
         return newPiece;
     }
 
@@ -39,22 +52,23 @@ public class GameBoard : MonoBehaviour
         renderers.material = defaultMaterial;
     }
 
-    public void DrawMap()
+    private void InitializeMapGameObject()
     {
         for (var y = 0; y < GameMap.MapHeight; y++)
         {
             for (var x = 0; x < GameMap.MapWidth; x++)
             {
-                if (GameMap.map[x, y] != null)
+                var mapElement = GameMap.map[x, y];
+                if (mapElement != null)
                 {
-                    var transform = GetPrefab(GameMap.map[x, y]);
-                    Instantiate(transform, GameMap.map[x, y].WorldPosition, Quaternion.identity);
+                    var prefab = GetPrefab(mapElement);
+                    mapElement.GameObject = Instantiate(prefab, mapElement.WorldPosition, Quaternion.identity, gameObject.transform);
                 }
             }
         }
     }
 
-    private Transform GetPrefab(MapNode mapNode)
+    private GameObject GetPrefab(MapNode mapNode)
     {
         switch (mapNode.Type)
         {

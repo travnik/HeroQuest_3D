@@ -4,8 +4,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
     public GameBoard GameBoard;
-    public GameMap GameMap = new GameMap();
+
+    public GameObject PlayerPrefab;
+    private GameObject _player;
 
     void Awake()
     {
@@ -20,7 +23,32 @@ public class GameManager : MonoBehaviour
 
     void InitialSetup()
     {
-        GameMap.Initialize();
-        GameBoard.DrawMap();
+        GameBoard.Initialize();
+        AddPiece(PlayerPrefab, 2, 2);
+    }
+
+    public void AddPiece(GameObject prefab, int col, int row)
+    {
+        _player = GameBoard.AddPiece(prefab, col, row);
+    }
+
+    public void SelectPiece(GameObject piece)
+    {
+        GameBoard.SelectPiece(piece);
+    }
+
+    public void DeselectPiece(GameObject piece)
+    {
+        GameBoard.DeselectPiece(piece);
+    }
+
+    public bool DoesPieceBelongToCurrentPlayer(GameObject piece)
+    {
+        return true;
+    }
+
+    public GameObject PieceAtGrid(Vector2Int gridPoint)
+    {
+        return _player;
     }
 }
