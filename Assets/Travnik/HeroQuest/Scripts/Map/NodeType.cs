@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Travnik.HeroQuest.Scripts.Map
+namespace Travnik.HeroQuest
 {
     public enum NodeType
     {

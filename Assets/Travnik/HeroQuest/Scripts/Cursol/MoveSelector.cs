@@ -2,118 +2,121 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveSelector : MonoBehaviour
+namespace Travnik.HeroQuest
 {
-    public GameObject moveLocationPrefab;
-    public GameObject tileHighlightPrefab;
-    public GameObject attackLocationPrefab;
-
-    private GameObject tileHighlight;
-    private GameObject movingPiece;
-    private List<Vector2Int> moveLocations;
-    private List<GameObject> locationHighlights;
-
-    void Start()
+    public class MoveSelector : MonoBehaviour
     {
-        this.enabled = false;
-        tileHighlight = Instantiate(tileHighlightPrefab, Geometry.PointFromGrid(new Vector2Int(0, 0)),
-            Quaternion.identity, gameObject.transform);
-        tileHighlight.SetActive(false);
-    }
+        public GameObject moveLocationPrefab;
+        public GameObject tileHighlightPrefab;
+        public GameObject attackLocationPrefab;
 
-    void Update()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        private GameObject tileHighlight;
+        private GameObject movingPiece;
+        private List<Vector2Int> moveLocations;
+        private List<GameObject> locationHighlights;
 
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        void Start()
         {
-            Vector3 point = hit.point;
-            Vector2Int gridPoint = Geometry.GridFromPoint(point);
-
-            tileHighlight.SetActive(true);
-            tileHighlight.transform.position = Geometry.PointFromGrid(gridPoint);
-            if (Input.GetMouseButtonDown(0))
-            {
-                // Reference Point 2: check for valid move location
-                if (!moveLocations.Contains(gridPoint))
-                {
-                    return;
-                }
-
-                if (GameManager.Instance.PieceAtGrid(gridPoint) == null)
-                {
-                    //GameManager.Instance.Move(movingPiece, gridPoint);
-                }
-                else
-                {
-                    //GameManager.Instance.CapturePieceAt(gridPoint);
-                    //GameManager.Instance.Move(movingPiece, gridPoint);
-                }
-                // Reference Point 3: capture enemy piece here later
-                ExitState();
-            }
-        }
-        else
-        {
+            this.enabled = false;
+            tileHighlight = Instantiate(tileHighlightPrefab, Geometry.PointFromGrid(new Vector2Int(0, 0)),
+                Quaternion.identity, gameObject.transform);
             tileHighlight.SetActive(false);
         }
-    }
 
-    private void CancelMove()
-    {
-        this.enabled = false;
-
-        foreach (GameObject highlight in locationHighlights)
+        void Update()
         {
-            Destroy(highlight);
-        }
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        GameManager.Instance.DeselectPiece(movingPiece);
-        TileSelector selector = GetComponent<TileSelector>();
-        selector.EnterState();
-    }
-
-    public void EnterState(GameObject piece)
-    {
-        movingPiece = piece;
-        this.enabled = true;
-
-        //moveLocations = GameManager.Instance.MovesForPiece(movingPiece);
-        locationHighlights = new List<GameObject>();
-
-        if (moveLocations.Count == 0)
-        {
-            CancelMove();
-        }
-
-        foreach (Vector2Int loc in moveLocations)
-        {
-            GameObject highlight;
-            if (GameManager.Instance.PieceAtGrid(loc))
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
             {
-                highlight = Instantiate(attackLocationPrefab, Geometry.PointFromGrid(loc), Quaternion.identity, gameObject.transform);
+                Vector3 point = hit.point;
+                Vector2Int gridPoint = Geometry.GridFromPoint(point);
+
+                tileHighlight.SetActive(true);
+                tileHighlight.transform.position = Geometry.PointFromGrid(gridPoint);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    // Reference Point 2: check for valid move location
+                    if (!moveLocations.Contains(gridPoint))
+                    {
+                        return;
+                    }
+
+                    if (GameManager.Instance.PieceAtGrid(gridPoint) == null)
+                    {
+                        //GameManager.Instance.Move(movingPiece, gridPoint);
+                    }
+                    else
+                    {
+                        //GameManager.Instance.CapturePieceAt(gridPoint);
+                        //GameManager.Instance.Move(movingPiece, gridPoint);
+                    }
+                    // Reference Point 3: capture enemy piece here later
+                    ExitState();
+                }
             }
             else
             {
-                highlight = Instantiate(moveLocationPrefab, Geometry.PointFromGrid(loc), Quaternion.identity, gameObject.transform);
+                tileHighlight.SetActive(false);
             }
-            locationHighlights.Add(highlight);
         }
-    }
 
-    private void ExitState()
-    {
-        this.enabled = false;
-        TileSelector selector = GetComponent<TileSelector>();
-        tileHighlight.SetActive(false);
-        GameManager.Instance.DeselectPiece(movingPiece);
-        movingPiece = null;
-        //GameManager.Instance.NextPlayer();
-        selector.EnterState();
-        foreach (GameObject highlight in locationHighlights)
+        private void CancelMove()
         {
-            Destroy(highlight);
+            this.enabled = false;
+
+            foreach (GameObject highlight in locationHighlights)
+            {
+                Destroy(highlight);
+            }
+
+            GameManager.Instance.DeselectPiece(movingPiece);
+            TileSelector selector = GetComponent<TileSelector>();
+            selector.EnterState();
+        }
+
+        public void EnterState(GameObject piece)
+        {
+            movingPiece = piece;
+            this.enabled = true;
+
+            //moveLocations = GameManager.Instance.MovesForPiece(movingPiece);
+            locationHighlights = new List<GameObject>();
+
+            if (moveLocations.Count == 0)
+            {
+                CancelMove();
+            }
+
+            foreach (Vector2Int loc in moveLocations)
+            {
+                GameObject highlight;
+                if (GameManager.Instance.PieceAtGrid(loc))
+                {
+                    highlight = Instantiate(attackLocationPrefab, Geometry.PointFromGrid(loc), Quaternion.identity, gameObject.transform);
+                }
+                else
+                {
+                    highlight = Instantiate(moveLocationPrefab, Geometry.PointFromGrid(loc), Quaternion.identity, gameObject.transform);
+                }
+                locationHighlights.Add(highlight);
+            }
+        }
+
+        private void ExitState()
+        {
+            this.enabled = false;
+            TileSelector selector = GetComponent<TileSelector>();
+            tileHighlight.SetActive(false);
+            GameManager.Instance.DeselectPiece(movingPiece);
+            movingPiece = null;
+            //GameManager.Instance.NextPlayer();
+            selector.EnterState();
+            foreach (GameObject highlight in locationHighlights)
+            {
+                Destroy(highlight);
+            }
         }
     }
 }

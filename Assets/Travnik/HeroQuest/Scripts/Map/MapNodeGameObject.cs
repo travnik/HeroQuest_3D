@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 using Unity;
 using UnityEngine;
 
-public class MapNodeGameObject : MapNode
+namespace Travnik.HeroQuest
 {
-    public GameObject GameObject;
+    public class MapNodeGameObject : MapNode
+    {
+        public GameObject GameObject;
+    }
 }

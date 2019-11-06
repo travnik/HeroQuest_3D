@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Travnik\HeroQuest\Scripts\BoardManager.cs" />
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\Characters\PlayerCharacter.cs" />
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\Cursol\MoveSelector.cs" />
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\Cursol\TileSelector.cs" />

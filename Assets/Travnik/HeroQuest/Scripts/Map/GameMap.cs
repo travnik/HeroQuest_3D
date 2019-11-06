@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Travnik.HeroQuest.Scripts.Map
+namespace Travnik.HeroQuest
 {
     public class GameMap
     {
         public static MapNodeGameObject[,] map;
 
-        public const int MapWidth = 10;
-        public const int MapHeight = 10;
+        public const int MapWidth = 15;
+        public const int MapHeight = 15;
 
         public void Initialize()
         {
@@ -24,6 +24,12 @@ namespace Assets.Travnik.HeroQuest.Scripts.Map
             AddNode(0, 3, NodeType.Wall);
             AddNode(0, 4, NodeType.Wall);
             AddNode(0, 5, NodeType.Wall);
+            AddNode(0, 6, NodeType.Wall);
+            AddNode(0, 7, NodeType.Wall);
+            AddNode(0, 8, NodeType.Wall);
+            AddNode(0, 9, NodeType.Wall);
+            AddNode(0, 10, NodeType.Wall);
+            AddNode(0, 11, NodeType.Wall);
             AddNode(1, 0, NodeType.Wall);
             AddNode(2, 0, NodeType.Wall);
             AddNode(3, 0, NodeType.Wall);
@@ -34,6 +40,11 @@ namespace Assets.Travnik.HeroQuest.Scripts.Map
             AddNode(1, 3, NodeType.Floor);
             AddNode(1, 4, NodeType.Floor);
             AddNode(1, 5, NodeType.Floor);
+            AddNode(1, 6, NodeType.Floor);
+            AddNode(1, 7, NodeType.Floor);
+            AddNode(1, 8, NodeType.Floor);
+            AddNode(1, 9, NodeType.Floor);
+            AddNode(1, 10, NodeType.Floor);
 
             AddNode(2, 1, NodeType.Floor);
             AddNode(2, 2, NodeType.Floor);
