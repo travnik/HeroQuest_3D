@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Travnik.HeroQuest
@@ -27,39 +28,45 @@ namespace Travnik.HeroQuest
         {
             PlayerCharacteScripts = new List<PlayerCharacter>();
             GameBoard.Initialize();
-            //_player1 = AddPiece(PlayerPrefab, 2, 2);
-            //_player2 = AddPiece(PlayerPrefab, 1, 5);
         }
 
         public void AddPlayerToList(PlayerCharacter script)
         {
-            Debug.Log("add PlayerCharacter " + script);
             PlayerCharacteScripts.Add(script);
         }
 
-        public GameObject AddPiece(GameObject prefab, int col, int row)
+        //public GameObject AddPiece(GameObject prefab, int col, int row)
+        //{
+        //    return GameBoard.AddPiece(prefab, col, row);
+        //}
+
+        public void SelectPlayer(PlayerCharacter character)
         {
-            return GameBoard.AddPiece(prefab, col, row);
+            Debug.Log("SelectPlayer");
+            foreach (var item in PlayerCharacteScripts)
+            {
+                Debug.Log("UnSelect " + item);
+                if (item != character)
+                {
+                    item.UnSelect();
+                }
+            }
+            character.Select();
         }
 
-        public void SelectPiece(GameObject piece)
-        {
-            GameBoard.SelectPiece(piece);
-        }
+        //public void DeselectPiece(GameObject piece)
+        //{
+        //    GameBoard.DeselectPiece(piece);
+        //}
 
-        public void DeselectPiece(GameObject piece)
-        {
-            GameBoard.DeselectPiece(piece);
-        }
+        //public bool DoesPieceBelongToCurrentPlayer(GameObject piece)
+        //{
+        //    return true;
+        //}
 
-        public bool DoesPieceBelongToCurrentPlayer(GameObject piece)
+        public PlayerCharacter GetPlayerAtGrid(Vector2Int gridPoint)
         {
-            return true;
-        }
-
-        public PlayerCharacter PieceAtGrid(Vector2Int gridPoint)
-        {
-            return PlayerCharacteScripts[0];
+            return PlayerCharacteScripts.FirstOrDefault(o => o.GridPoint == gridPoint);
         }
     }
 }

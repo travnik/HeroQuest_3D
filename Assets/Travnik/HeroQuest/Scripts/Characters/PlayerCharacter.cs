@@ -7,6 +7,7 @@ namespace Travnik.HeroQuest
     public class PlayerCharacter : MovingObject
     {
         private Outline _outline;
+        private bool _isSelect;
 
         void Start()
         {
@@ -16,12 +17,20 @@ namespace Travnik.HeroQuest
 
         public void Select()
         {
-            _outline.OutlineMode = Outline.Mode.OutlineAll;
+            if (!_isSelect)
+            {
+                _outline.OutlineMode = Outline.Mode.OutlineAll;
+                _isSelect = true;
+            }
         }
 
         public void UnSelect()
         {
-            _outline.OutlineMode = Outline.Mode.Disable;
+            if (_isSelect)
+            {
+                _isSelect = false;
+                _outline.OutlineMode = Outline.Mode.Disable;
+            }
         }
     }
 }

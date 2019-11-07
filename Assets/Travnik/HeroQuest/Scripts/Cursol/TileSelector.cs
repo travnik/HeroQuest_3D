@@ -32,25 +32,10 @@ namespace Travnik.HeroQuest
                 vector3.y = 0.6f;
                 _tileHighlight.transform.position = vector3;
 
-
-
                 if (Input.GetMouseButtonDown(0))
                 {
-                    PlayerCharacter playerScript = GameManager.Instance.PieceAtGrid(gridPoint);
-                    if (playerScript != null)
-                    {
-                        playerScript.Select();
-                    }
-
-
-                    Debug.Log("input mouse tileHighlight.transform.position" + _tileHighlight.transform.position);
-                    //GameObject selectedPiece = GameManager.Instance.PieceAtGrid(gridPoint);
-                    //if (GameManager.Instance.DoesPieceBelongToCurrentPlayer(selectedPiece))
-                    //{
-                    //    GameManager.Instance.SelectPiece(selectedPiece);
-                    //    // Reference Point 1: add ExitState call here later
-                    //    ExitState(selectedPiece);
-                    //}
+                    PlayerCharacter playerScript = GameManager.Instance.GetPlayerAtGrid(gridPoint);
+                    GameManager.Instance.SelectPlayer(playerScript);
                 }
             }
             else
@@ -68,8 +53,8 @@ namespace Travnik.HeroQuest
         {
             this.enabled = false;
             _tileHighlight.SetActive(false);
-            MoveSelector move = GetComponent<MoveSelector>();
-            move.EnterState(movingPiece);
+            //MoveSelector move = GetComponent<MoveSelector>();
+            //move.EnterState(movingPiece);
         }
     }
 }

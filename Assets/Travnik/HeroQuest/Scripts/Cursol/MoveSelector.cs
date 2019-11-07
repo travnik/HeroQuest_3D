@@ -43,7 +43,7 @@ namespace Travnik.HeroQuest
                         return;
                     }
 
-                    if (GameManager.Instance.PieceAtGrid(gridPoint) == null)
+                    if (GameManager.Instance.GetPlayerAtGrid(gridPoint) == null)
                     {
                         //GameManager.Instance.Move(movingPiece, gridPoint);
                     }
@@ -71,7 +71,7 @@ namespace Travnik.HeroQuest
                 Destroy(highlight);
             }
 
-            GameManager.Instance.DeselectPiece(movingPiece);
+            //GameManager.Instance.DeselectPiece(movingPiece);
             TileSelector selector = GetComponent<TileSelector>();
             selector.EnterState();
         }
@@ -92,7 +92,7 @@ namespace Travnik.HeroQuest
             foreach (Vector2Int loc in moveLocations)
             {
                 GameObject highlight;
-                if (GameManager.Instance.PieceAtGrid(loc))
+                if (GameManager.Instance.GetPlayerAtGrid(loc))
                 {
                     highlight = Instantiate(attackLocationPrefab, Geometry.PointFromGrid(loc), Quaternion.identity, gameObject.transform);
                 }
@@ -109,7 +109,7 @@ namespace Travnik.HeroQuest
             this.enabled = false;
             TileSelector selector = GetComponent<TileSelector>();
             tileHighlight.SetActive(false);
-            GameManager.Instance.DeselectPiece(movingPiece);
+            //GameManager.Instance.DeselectPiece(movingPiece);
             movingPiece = null;
             //GameManager.Instance.NextPlayer();
             selector.EnterState();
