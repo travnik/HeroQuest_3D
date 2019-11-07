@@ -36,14 +36,10 @@ namespace Travnik.HeroQuest
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    GameObject selectedPiece = GameManager.Instance.PieceAtGrid(gridPoint);
-                    if (selectedPiece != null)
+                    PlayerCharacter playerScript = GameManager.Instance.PieceAtGrid(gridPoint);
+                    if (playerScript != null)
                     {
-                        var playerScript = selectedPiece.AddComponent<PlayerCharacter>();
-                        if (playerScript != null)
-                        {
-                            playerScript.Select();
-                        }
+                        playerScript.Select();
                     }
 
 

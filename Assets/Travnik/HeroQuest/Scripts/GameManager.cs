@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Travnik.HeroQuest
 {
@@ -8,9 +9,8 @@ namespace Travnik.HeroQuest
 
         public GameBoard GameBoard;
 
-        public GameObject PlayerPrefab;
-        private GameObject _player1;
-        private GameObject _player2;
+        //public GameObject PlayerPrefab;
+        private List<PlayerCharacter> PlayerCharacteScripts;
 
         void Awake()
         {
@@ -25,9 +25,16 @@ namespace Travnik.HeroQuest
 
         void InitialSetup()
         {
+            PlayerCharacteScripts = new List<PlayerCharacter>();
             GameBoard.Initialize();
-            _player1 = AddPiece(PlayerPrefab, 2, 2);
-            _player2 = AddPiece(PlayerPrefab, 1, 5);
+            //_player1 = AddPiece(PlayerPrefab, 2, 2);
+            //_player2 = AddPiece(PlayerPrefab, 1, 5);
+        }
+
+        public void AddPlayerToList(PlayerCharacter script)
+        {
+            Debug.Log("add PlayerCharacter " + script);
+            PlayerCharacteScripts.Add(script);
         }
 
         public GameObject AddPiece(GameObject prefab, int col, int row)
@@ -50,9 +57,9 @@ namespace Travnik.HeroQuest
             return true;
         }
 
-        public GameObject PieceAtGrid(Vector2Int gridPoint)
+        public PlayerCharacter PieceAtGrid(Vector2Int gridPoint)
         {
-            return _player1;
+            return PlayerCharacteScripts[0];
         }
     }
 }

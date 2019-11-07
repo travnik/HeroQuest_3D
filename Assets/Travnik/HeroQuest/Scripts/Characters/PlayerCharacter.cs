@@ -4,24 +4,18 @@ using UnityEngine;
 
 namespace Travnik.HeroQuest
 {
-    public class PlayerCharacter : MonoBehaviour
+    public class PlayerCharacter : MovingObject
     {
-        public GameObject Character;
         private Outline _outline;
 
-        // Start is called before the first frame update
-        void Awake()
+        void Start()
         {
             _outline = GetComponent<Outline>();
-            Debug.Log("PlayerCharacter awake " + _outline);
-            //_outline.OutlineMode = Outline.Mode.Disable;
-            //_outline.OutlineColor = Color.green;
-            //_outline.OutlineWidth = 10;
+            GameManager.Instance.AddPlayerToList(this);
         }
 
         public void Select()
         {
-            Debug.Log("PlayerCharacter Select " + _outline);
             _outline.OutlineMode = Outline.Mode.OutlineAll;
         }
 

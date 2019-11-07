@@ -65,11 +65,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\BoardManager.cs" />
+    <Compile Include="Assets\Travnik\HeroQuest\Scripts\Characters\MovingObject.cs" />
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\Characters\PlayerCharacter.cs" />
+    <Compile Include="Assets\Travnik\HeroQuest\Scripts\Cursol\GameCursor.cs" />
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\Cursol\MoveSelector.cs" />
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\Cursol\TileSelector.cs" />
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\GameBoard.cs" />
-    <Compile Include="Assets\Travnik\HeroQuest\Scripts\GameCursor.cs" />
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\GameManager.cs" />
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\Geometry.cs" />
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\Map\GameMap.cs" />

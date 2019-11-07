@@ -12,15 +12,20 @@ namespace Travnik.HeroQuest
         public GameObject FloorPrefab;
         public GameObject WallPrefab;
 
+        public GameObject PlayerPrefab;
+
         public GameMap GameMap;
-        public List<GameObject> Characters;
+        //public List<GameObject> Characters;
 
         public void Initialize()
         {
-            Characters = new List<GameObject>();
+            //Characters = new List<GameObject>();
             GameMap = new GameMap();
             GameMap.Initialize();
             InitializeMapGameObject();
+
+            AddCharacter(PlayerPrefab, 2, 2);
+            AddPiece(PlayerPrefab, 1, 5);
         }
 
         public GameObject AddCharacter(GameObject prefab, int col, int row)
@@ -28,7 +33,7 @@ namespace Travnik.HeroQuest
             Vector2Int gridPoint = Geometry.GridPoint(col, row);
             GameObject character = Instantiate(prefab, Geometry.PointFromGrid(gridPoint), Quaternion.identity, gameObject.transform);
             character.transform.localPosition = Geometry.PointFromGrid(gridPoint);
-            Characters.Add(character);
+            //Characters.Add(character);
             return character;
         }
 
