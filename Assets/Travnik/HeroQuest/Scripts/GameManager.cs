@@ -35,11 +35,6 @@ namespace Travnik.HeroQuest
             PlayerCharacteScripts.Add(script);
         }
 
-        //public GameObject AddPiece(GameObject prefab, int col, int row)
-        //{
-        //    return GameBoard.AddPiece(prefab, col, row);
-        //}
-
         public void SelectPlayer(PlayerCharacter character)
         {
             Debug.Log("SelectPlayer");
@@ -49,20 +44,13 @@ namespace Travnik.HeroQuest
                 if (item != character)
                 {
                     item.UnSelect();
+                    PathMover.Instance.ClearMovesNode();
                 }
             }
             character.Select();
+            PathFinder.Search(GameBoard.GameMap, character.GridPoint.x, character.GridPoint.y, character.MoveStep);
+            PathMover.Instance.FillMovesNode();
         }
-
-        //public void DeselectPiece(GameObject piece)
-        //{
-        //    GameBoard.DeselectPiece(piece);
-        //}
-
-        //public bool DoesPieceBelongToCurrentPlayer(GameObject piece)
-        //{
-        //    return true;
-        //}
 
         public PlayerCharacter GetPlayerAtGrid(Vector2Int gridPoint)
         {

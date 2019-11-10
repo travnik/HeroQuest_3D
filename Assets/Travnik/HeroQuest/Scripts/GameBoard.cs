@@ -15,11 +15,9 @@ namespace Travnik.HeroQuest
         public GameObject PlayerPrefab;
 
         public GameMap GameMap;
-        //public List<GameObject> Characters;
 
         public void Initialize()
         {
-            //Characters = new List<GameObject>();
             GameMap = new GameMap();
             GameMap.Initialize();
             InitializeMapGameObject();
@@ -34,39 +32,38 @@ namespace Travnik.HeroQuest
             GameObject character = Instantiate(prefab, Geometry.PointFromGrid(gridPoint), Quaternion.identity, gameObject.transform);
             character.GetComponent<MovingObject>().GridPoint = gridPoint;
             character.transform.localPosition = Geometry.PointFromGrid(gridPoint);
-            //Characters.Add(character);
             return character;
         }
 
-        public GameObject AddPiece(GameObject prefab, int col, int row)
-        {
-            Vector2Int gridPoint = Geometry.GridPoint(col, row);
-            GameObject newPiece = Instantiate(prefab, Geometry.PointFromGrid(gridPoint), Quaternion.identity, gameObject.transform);
-            newPiece.transform.localPosition = Geometry.PointFromGrid(gridPoint);
-            return newPiece;
-        }
+        //public GameObject AddPiece(GameObject prefab, int col, int row)
+        //{
+        //    Vector2Int gridPoint = Geometry.GridPoint(col, row);
+        //    GameObject newPiece = Instantiate(prefab, Geometry.PointFromGrid(gridPoint), Quaternion.identity, gameObject.transform);
+        //    newPiece.transform.localPosition = Geometry.PointFromGrid(gridPoint);
+        //    return newPiece;
+        //}
 
-        public void RemovePiece(GameObject piece)
-        {
-            Destroy(piece);
-        }
+        //public void RemovePiece(GameObject piece)
+        //{
+        //    Destroy(piece);
+        //}
 
-        public void MovePiece(GameObject piece, Vector2Int gridPoint)
-        {
-            piece.transform.position = Geometry.PointFromGrid(gridPoint);
-        }
+        //public void MovePiece(GameObject piece, Vector2Int gridPoint)
+        //{
+        //    piece.transform.position = Geometry.PointFromGrid(gridPoint);
+        //}
 
-        public void SelectPiece(GameObject piece)
-        {
-            MeshRenderer renderers = piece.GetComponentInChildren<MeshRenderer>();
-            renderers.material = selectedMaterial;
-        }
+        //public void SelectPiece(GameObject piece)
+        //{
+        //    MeshRenderer renderers = piece.GetComponentInChildren<MeshRenderer>();
+        //    renderers.material = selectedMaterial;
+        //}
 
-        public void DeselectPiece(GameObject piece)
-        {
-            MeshRenderer renderers = piece.GetComponentInChildren<MeshRenderer>();
-            renderers.material = defaultMaterial;
-        }
+        //public void DeselectPiece(GameObject piece)
+        //{
+        //    MeshRenderer renderers = piece.GetComponentInChildren<MeshRenderer>();
+        //    renderers.material = defaultMaterial;
+        //}
 
         private void InitializeMapGameObject()
         {
@@ -74,7 +71,7 @@ namespace Travnik.HeroQuest
             {
                 for (var x = 0; x < GameMap.MapWidth; x++)
                 {
-                    var mapElement = GameMap.map[x, y];
+                    var mapElement = GameMap.Map[x, y];
                     if (mapElement != null)
                     {
                         var prefab = GetPrefab(mapElement);

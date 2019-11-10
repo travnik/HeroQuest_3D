@@ -34,6 +34,8 @@ namespace Travnik.HeroQuest
 
                 if (Input.GetMouseButtonDown(0))
                 {
+
+
                     PlayerCharacter playerScript = GameManager.Instance.GetPlayerAtGrid(gridPoint);
                     GameManager.Instance.SelectPlayer(playerScript);
                 }

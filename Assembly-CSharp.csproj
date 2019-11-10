@@ -69,6 +69,7 @@
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\Characters\PlayerCharacter.cs" />
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\Cursol\GameCursor.cs" />
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\Cursol\MoveSelector.cs" />
+    <Compile Include="Assets\Travnik\HeroQuest\Scripts\Cursol\PathMover.cs" />
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\Cursol\TileSelector.cs" />
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\GameBoard.cs" />
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\GameManager.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\Map\MapNode.cs" />
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\Map\MapNodeGameObject.cs" />
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\Map\NodeType.cs" />
+    <Compile Include="Assets\Travnik\HeroQuest\Scripts\Map\PathFinder.cs" />
     <Compile Include="Assets\Travnik\HeroQuest\Scripts\QuickOutline\Outline.cs" />
     <None Include="Assets\QuickOutline\Resources\Shaders\OutlineFill.shader" />
     <None Include="Assets\QuickOutline\Readme.txt" />

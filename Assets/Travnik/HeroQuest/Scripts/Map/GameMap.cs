@@ -9,14 +9,14 @@ namespace Travnik.HeroQuest
 {
     public class GameMap
     {
-        public static MapNodeGameObject[,] map;
+        public MapNodeGameObject[,] Map;
 
-        public const int MapWidth = 15;
-        public const int MapHeight = 15;
+        public int MapWidth = 15;
+        public int MapHeight = 15;
 
         public void Initialize()
         {
-            map = new MapNodeGameObject[MapWidth, MapHeight];
+            Map = new MapNodeGameObject[MapWidth, MapHeight];
 
             AddNode(0, 0, NodeType.Wall);
             AddNode(0, 1, NodeType.Wall);
@@ -76,7 +76,7 @@ namespace Travnik.HeroQuest
                 WorldPosition = Geometry.PointFromGrid(gridPoint),
                 ArrayPosition = gridPoint
             };
-            GameMap.map[x, y] = node;
+            Map[x, y] = node;
             return node;
         }
     }

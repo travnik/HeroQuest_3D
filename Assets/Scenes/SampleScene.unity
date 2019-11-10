@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 274902847}
   - component: {fileID: 274902848}
   - component: {fileID: 274902849}
+  - component: {fileID: 274902850}
   m_Layer: 0
   m_Name: GameBoard
   m_TagString: Untagged
@@ -203,6 +204,20 @@ MonoBehaviour:
   tileHighlightPrefab: {fileID: 1333511979136996, guid: 848f36bdf151a924ca27a616cc4eb881,
     type: 3}
   attackLocationPrefab: {fileID: 1341371675672656, guid: a42201bdba11ed045a1a7cb2841fc1ca,
+    type: 3}
+--- !u!114 &274902850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274902845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f3538c851812b4994be385fa82f674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TileMovePrefab: {fileID: 267359000189935257, guid: de593cfca5422c64ab9b9d16a475aed7,
     type: 3}
 --- !u!1 &705507993
 GameObject:
