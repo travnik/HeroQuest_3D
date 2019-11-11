@@ -34,10 +34,8 @@ namespace Travnik.HeroQuest
 
                 if (Input.GetMouseButtonDown(0))
                 {
-
-
                     PlayerCharacter playerScript = GameManager.Instance.GetPlayerAtGrid(gridPoint);
-                    GameManager.Instance.SelectPlayer(playerScript);
+                    SelectPlayer(playerScript);
                 }
             }
             else
@@ -51,10 +49,11 @@ namespace Travnik.HeroQuest
             enabled = true;
         }
 
-        private void ExitState(GameObject movingPiece)
+        private void SelectPlayer(PlayerCharacter playerScript)
         {
             this.enabled = false;
             _tileHighlight.SetActive(false);
+            GameManager.Instance.SelectPlayer(playerScript);
             //MoveSelector move = GetComponent<MoveSelector>();
             //move.EnterState(movingPiece);
         }
